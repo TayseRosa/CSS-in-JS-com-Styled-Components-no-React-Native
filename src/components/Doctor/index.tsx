@@ -6,19 +6,30 @@ import {
   DoctorProps
 } from './style';
 
-export function Doctor({type}: DoctorProps){
+export type DoctorDataProps = {
+  id: string;
+  name:string;
+  avatar: string;
+  specialist: string;
+}
+
+type Props = DoctorProps &{
+  data: DoctorDataProps;
+}
+
+export function Doctor({type, data, ...rest}: Props){
   return(
-    <Container type={type}>
+    <Container type={type} {...rest}>
       <Avatar 
-        source={{uri:"https://github.com/tayserosa.png"}} 
+        source={{uri: data.avatar}} 
       />
 
       <Name>
-        Tayse Rosa
+        {data.name}
       </Name>
 
       <Specialist>
-        Developer React Native
+        {data.specialist}
       </Specialist>
     </Container>
   )
